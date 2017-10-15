@@ -2,11 +2,34 @@
 <html>
   <head>
     <title>defixio builder</title>
+    <script>
+      function clicked() {
+        var txt = document.getElementById("inp").value
+        const delimeters = [".","!","?",","," "]
+        var table = [txt]
+        delimeters.forEach(function(delim) {
+          var newtable = []
+          table.forEach(function(str) {
+            str.split(delim).forEach(function(str2) {
+              newtable.push(str2)
+              newtable.push(delim)
+            })
+            newtable = newtable.slice(0,newtable.length-1)
+          })
+          table = newtable
+        })
+        console.log(table)
+        document.getElementById("otp").innerHTML=""
+        table.forEach(function(str) {
+          document.getElementById("otp").innerHTML+=str.toUpperCase().split("").reverse().join("")
+        })
+      }
+    </script>
   </head>
   <body>
-    This site throws "HOCVS POCVS" at the end, reverses every word, and makes everything capital.
-    <textarea rows="6" cols="50" id="mmm" placeholder="Put your defixio here."></input>
-    <button onclick="onclick()">Convert</button>
-    <p id="final">mmm</p>
+    <p>This site throws "HOCVS POCVS" at the end, reverses every word, and makes everything capital.</p>
+    <textarea rows="6" cols="50" id="inp" placeholder="spooky defixio."></textarea><br>
+    <button onclick="clicked()">Convert</button>
+    <p id="otp">YKOOPS OIXIFED.</p>
   </body>
 </html>
